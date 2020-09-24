@@ -28,12 +28,23 @@ public class FileWordAnalyzer {
     }
 
     public List<String> getWordsContainingSubstring (String subString ) throws IOException {
-        filePartReader.readLines ();
-        return null;
+        subString = subString.toLowerCase();
+        List<String> content = Arrays.asList(filePartReader.readLines().split("\n"));
+        List<String> wordsWithSubstring = new ArrayList<>();
+        for (int i = 0; i < content.size(); i++ ) {
+            String[] line = content.get(i).split(" ");
+            for (int j=0; j < line.length; j++) {
+                String wordToCheck = line[j].toLowerCase();
+                if (wordToCheck.contains(subString)) {
+                    wordsWithSubstring.add(wordToCheck);
+                }
+            }
+        }
+        return wordsWithSubstring;
     }
 
     public List<String> getStringsWhichPalindromes () throws IOException {
-        filePartReader.readLines();
+
         return null;
     }
 }
