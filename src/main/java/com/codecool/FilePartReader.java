@@ -1,6 +1,9 @@
 package com.codecool;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FilePartReader {
 
@@ -23,12 +26,16 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public String read(String filePath) throws IOException {
-        return null;
+    public String read() throws IOException {
+        return Files.readString(Paths.get(filePath));
     }
 
-    public String readLines() {
-
-        return null;
+    public String readLines() throws IOException {
+        String[] content = read().split("\n");
+        String lines = "";
+        for (int i = fromLine; i <= toLine; i++ ) {
+            lines += content[i] + "\n";
+        }
+        return lines;
     }
 }
