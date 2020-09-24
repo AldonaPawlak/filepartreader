@@ -44,7 +44,19 @@ public class FileWordAnalyzer {
     }
 
     public List<String> getStringsWhichPalindromes () throws IOException {
-
-        return null;
+        List<String> content = Arrays.asList(filePartReader.readLines().split("\n"));
+        List<String> palindromes = new ArrayList<>();
+        for (int i = 0; i < content.size(); i++ ) {
+            String[] line = content.get(i).split(" ");
+            for (int j=0; j < line.length; j++) {
+                String wordToCheck = line[j].toLowerCase();
+                if (!wordToCheck.equals("") && !wordToCheck.equals(" ")) {
+                    if (wordToCheck.equals(new StringBuilder(wordToCheck).reverse().toString())) {
+                        palindromes.add(wordToCheck);
+                    }
+                }
+            }
+        }
+        return palindromes;
     }
 }
